@@ -56,13 +56,17 @@ async function start() {
       const seedPath = path.resolve(__dirname, '../database/seed.sql');
       if (fs.existsSync(seedPath)) {
         const seed = fs.readFileSync(seedPath, 'utf-8');
-        const pool = new Pool({
-          user: process.env.DB_USER || 'postgres',
-          password: process.env.DB_PASSWORD || 'postgres',
-          host: process.env.DB_HOST || 'localhost',
-          port: process.env.DB_PORT || 5432,
-          database: process.env.DB_NAME || 'golf_app',
-        });
+        const pool = new Pool(
+          process.env.DATABASE_URL
+            ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
+            : {
+                user: process.env.DB_USER || 'postgres',
+                password: process.env.DB_PASSWORD || 'postgres',
+                host: process.env.DB_HOST || 'localhost',
+                port: process.env.DB_PORT || 5432,
+                database: process.env.DB_NAME || 'golf_app',
+              }
+        );
         await pool.query(seed);
         await pool.end();
         console.log('[DB] Seed data loaded');
