@@ -58,52 +58,52 @@ export default function Friends() {
     }
   }
 
-  if (loading) return <div className="text-center py-12 text-gray-500">Loading...</div>;
+  if (loading) return <div className="text-center py-12 text-[#004D35]">Loading...</div>;
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800">Friends</h1>
+      <h1 className="text-2xl font-bold text-[#004D35]" style={{ fontFamily: "'Playfair Display', serif" }}>Friends</h1>
 
       {/* Add Friend */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3">Add Friend</h2>
+      <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-5">
+        <h2 className="text-lg font-semibold text-[#004D35] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Add Friend</h2>
         <form onSubmit={handleSendRequest} className="flex gap-2">
           <input
             type="text"
             placeholder="Enter username..."
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="flex-1 border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="flex-1 border border-[#D4C9B0] rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
           />
-          <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded-md text-sm hover:bg-green-800 transition-colors">
+          <button type="submit" className="bg-[#006747] text-white px-4 py-2 rounded-md text-sm hover:bg-[#004D35] transition-colors uppercase tracking-wider">
             Send Request
           </button>
         </form>
         {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
-        {success && <p className="text-green-600 text-sm mt-2">{success}</p>}
+        {success && <p className="text-[#006747] text-sm mt-2">{success}</p>}
       </div>
 
       {/* Pending Received */}
       {data.pendingReceived.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-lg font-semibold text-gray-700 mb-3">Friend Requests</h2>
-          <div className="divide-y">
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-5">
+          <h2 className="text-lg font-semibold text-[#004D35] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Friend Requests</h2>
+          <div className="divide-y divide-[#E8E0D0]">
             {data.pendingReceived.map((r) => (
               <div key={r.friendship_id} className="flex justify-between items-center py-3">
                 <div>
-                  <div className="font-medium text-gray-800">{r.display_name || r.username}</div>
-                  <div className="text-xs text-gray-500">@{r.username}</div>
+                  <div className="font-medium text-[#333]">{r.display_name || r.username}</div>
+                  <div className="text-xs text-[#888]">@{r.username}</div>
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleRespond(r.friendship_id, 'accept')}
-                    className="bg-green-700 text-white px-3 py-1 rounded text-sm hover:bg-green-800"
+                    className="bg-[#006747] text-white px-3 py-1 rounded text-sm hover:bg-[#004D35] uppercase tracking-wider"
                   >
                     Accept
                   </button>
                   <button
                     onClick={() => handleRespond(r.friendship_id, 'decline')}
-                    className="border border-gray-300 text-gray-600 px-3 py-1 rounded text-sm hover:bg-gray-50"
+                    className="border border-[#D4C9B0] text-[#888] px-3 py-1 rounded text-sm hover:bg-[#FFF8E7]"
                   >
                     Decline
                   </button>
@@ -116,12 +116,12 @@ export default function Friends() {
 
       {/* Pending Sent */}
       {data.pendingSent.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-sm font-medium text-gray-500 mb-2">Pending Requests Sent</h2>
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-5">
+          <h2 className="text-xs font-medium text-[#888] mb-2 uppercase tracking-wider">Pending Requests Sent</h2>
           <div className="space-y-1">
             {data.pendingSent.map((r) => (
-              <div key={r.friendship_id} className="text-sm text-gray-600">
-                Waiting for <span className="font-medium">@{r.username}</span> to accept
+              <div key={r.friendship_id} className="text-sm text-[#888]">
+                Waiting for <span className="font-medium text-[#333]">@{r.username}</span> to accept
               </div>
             ))}
           </div>
@@ -129,20 +129,20 @@ export default function Friends() {
       )}
 
       {/* Friends List */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <h2 className="text-lg font-semibold text-gray-700 mb-3">
+      <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-5">
+        <h2 className="text-lg font-semibold text-[#004D35] mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
           My Friends ({data.friends.length})
         </h2>
         {data.friends.length === 0 ? (
-          <p className="text-gray-500 text-sm">No friends yet. Add someone by their username above!</p>
+          <p className="text-[#888] text-sm">No friends yet. Add someone by their username above!</p>
         ) : (
-          <div className="divide-y">
+          <div className="divide-y divide-[#E8E0D0]">
             {data.friends.map((f) => (
               <div key={f.friendship_id} className="py-3">
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-medium text-gray-800">{f.display_name || f.username}</div>
-                    <div className="text-xs text-gray-500">
+                    <div className="font-medium text-[#333]">{f.display_name || f.username}</div>
+                    <div className="text-xs text-[#888]">
                       @{f.username}
                       {f.handicap != null && ` · Handicap: ${f.handicap}`}
                     </div>
@@ -150,7 +150,7 @@ export default function Friends() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => viewFriendRounds(f)}
-                      className="text-sm text-green-700 hover:underline"
+                      className="text-sm text-[#006747] hover:text-[#004D35] hover:underline"
                     >
                       View Rounds
                     </button>
@@ -170,32 +170,32 @@ export default function Friends() {
 
       {/* Friend's Rounds */}
       {selectedFriend && (
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-5">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-semibold text-gray-700">
+            <h2 className="text-lg font-semibold text-[#004D35]" style={{ fontFamily: "'Playfair Display', serif" }}>
               {selectedFriend.display_name || selectedFriend.username}'s Recent Rounds
             </h2>
-            <button onClick={() => { setSelectedFriend(null); setFriendRounds([]); }} className="text-sm text-gray-500 hover:underline">
+            <button onClick={() => { setSelectedFriend(null); setFriendRounds([]); }} className="text-sm text-[#888] hover:underline">
               Close
             </button>
           </div>
           {loadingRounds ? (
-            <p className="text-gray-500 text-sm">Loading...</p>
+            <p className="text-[#888] text-sm">Loading...</p>
           ) : friendRounds.length === 0 ? (
-            <p className="text-gray-500 text-sm">No rounds logged yet.</p>
+            <p className="text-[#888] text-sm">No rounds logged yet.</p>
           ) : (
-            <div className="divide-y">
+            <div className="divide-y divide-[#E8E0D0]">
               {friendRounds.map((r) => (
                 <div key={r.id} className="flex justify-between items-center py-3">
                   <div>
-                    <div className="font-medium text-gray-800">{r.course_name}</div>
-                    <div className="text-sm text-gray-500">{formatDate(r.date_played)}</div>
+                    <div className="font-medium text-[#333]">{r.course_name}</div>
+                    <div className="text-sm text-[#888]">{formatDate(r.date_played)}</div>
                   </div>
                   <div className="text-right">
                     <div className={`text-lg font-bold ${scoreColor(r.total_score, r.course_par)}`}>
                       {r.total_score}
                     </div>
-                    <div className="text-xs text-gray-500">{formatScoreToPar(r.total_score, r.course_par)}</div>
+                    <div className="text-xs text-[#888]">{formatScoreToPar(r.total_score, r.course_par)}</div>
                   </div>
                 </div>
               ))}

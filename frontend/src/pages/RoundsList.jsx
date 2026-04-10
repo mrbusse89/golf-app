@@ -31,44 +31,44 @@ export default function RoundsList() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-gray-800">My Rounds</h1>
+        <h1 className="text-2xl font-bold text-[#004D35]" style={{ fontFamily: "'Playfair Display', serif" }}>My Rounds</h1>
         <div className="flex gap-2 items-center">
           <select
             value={sort}
             onChange={(e) => { setSort(e.target.value); setPage(0); }}
-            className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="text-sm border border-[#D4C9B0] rounded-md px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
           >
             <option value="date_played">By Date</option>
             <option value="total_score">By Score</option>
           </select>
           <Link
             to="/rounds/new"
-            className="bg-green-700 text-white px-3 py-1 rounded-md hover:bg-green-800 transition-colors text-sm font-medium"
+            className="bg-[#006747] text-white px-3 py-1 rounded-md hover:bg-[#004D35] transition-colors text-sm font-medium uppercase tracking-wider"
           >
             + Log Round
           </Link>
         </div>
       </div>
 
-      <p className="text-sm text-gray-500 mb-3">{total} round{total !== 1 ? 's' : ''} total</p>
+      <p className="text-sm text-[#888] mb-3">{total} round{total !== 1 ? 's' : ''} total</p>
 
       {loading ? (
-        <div className="text-center py-8 text-gray-500">Loading...</div>
+        <div className="text-center py-8 text-[#004D35]">Loading...</div>
       ) : rounds.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-8 text-center">
-          <p className="text-gray-500 mb-3">No rounds logged yet.</p>
-          <Link to="/rounds/new" className="text-green-700 font-medium hover:underline">Log your first round →</Link>
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-8 text-center">
+          <p className="text-[#888] mb-3">No rounds logged yet.</p>
+          <Link to="/rounds/new" className="text-[#006747] font-medium hover:text-[#004D35] hover:underline">Log your first round →</Link>
         </div>
       ) : (
         <div className="space-y-2">
           {rounds.map((r) => (
             <div
               key={r.id}
-              className="bg-white rounded-lg shadow p-4 flex justify-between items-center"
+              className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-4 flex justify-between items-center hover:border-[#C8A951] transition-all"
             >
               <Link to={`/rounds/${r.id}`} className="flex-1 hover:opacity-80 transition-opacity">
-                <div className="font-medium text-gray-800">{r.course_name}</div>
-                <div className="text-sm text-gray-500">
+                <div className="font-medium text-[#333]">{r.course_name}</div>
+                <div className="text-sm text-[#888]">
                   {formatDate(r.date_played)}
                   {r.total_putts ? ` · ${r.total_putts} putts` : ''}
                 </div>
@@ -78,11 +78,11 @@ export default function RoundsList() {
                   <div className={`text-xl font-bold ${scoreColor(r.total_score, r.course_par)}`}>
                     {r.total_score}
                   </div>
-                  <div className="text-xs text-gray-500">{formatScoreToPar(r.total_score, r.course_par)}</div>
+                  <div className="text-xs text-[#888]">{formatScoreToPar(r.total_score, r.course_par)}</div>
                 </div>
                 <button
                   onClick={() => handleDelete(r.id, r.course_name)}
-                  className="text-gray-400 hover:text-red-500 transition-colors text-sm"
+                  className="text-[#ccc] hover:text-red-500 transition-colors text-sm"
                   title="Delete round"
                 >
                   ✕
@@ -99,17 +99,17 @@ export default function RoundsList() {
           <button
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
-            className="px-3 py-1 border rounded text-sm disabled:opacity-30 hover:bg-gray-50"
+            className="px-3 py-1 border border-[#D4C9B0] rounded text-sm disabled:opacity-30 hover:bg-[#FFF8E7] text-[#004D35] transition-colors"
           >
             ← Prev
           </button>
-          <span className="px-3 py-1 text-sm text-gray-600">
+          <span className="px-3 py-1 text-sm text-[#888]">
             Page {page + 1} of {totalPages}
           </span>
           <button
             onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}
-            className="px-3 py-1 border rounded text-sm disabled:opacity-30 hover:bg-gray-50"
+            className="px-3 py-1 border border-[#D4C9B0] rounded text-sm disabled:opacity-30 hover:bg-[#FFF8E7] text-[#004D35] transition-colors"
           >
             Next →
           </button>

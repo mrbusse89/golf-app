@@ -38,89 +38,108 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <div className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center text-green-800 mb-2">⛳ Golf Tracker</h1>
-        <p className="text-center text-gray-500 mb-6">
-          {isRegister ? 'Create your account' : 'Sign in to track your rounds'}
-        </p>
+    <div className="flex justify-center items-center min-h-[85vh]">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="text-[#C8A951] text-5xl mb-3">&#9971;</div>
+          <h1 className="text-3xl font-bold text-[#006747]" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+            Golf Tracker
+          </h1>
+          <div className="w-16 h-0.5 bg-[#C8A951] mx-auto mt-3"></div>
+          <p className="text-gray-500 mt-3 text-sm tracking-wide uppercase">
+            {isRegister ? 'Create your account' : 'Sign in to continue'}
+          </p>
+        </div>
 
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded mb-4 text-sm">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {isRegister && (
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="mikegolf"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Display Name</label>
-                <input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="Mike B"
-                />
-              </div>
-            </>
+        {/* Card */}
+        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-8">
+          {error && (
+            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded mb-6 text-sm">
+              {error}
+            </div>
           )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              placeholder="mike@example.com"
-              required
-            />
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {isRegister && (
+              <>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Username</label>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full border border-gray-200 rounded px-4 py-3 text-sm bg-gray-50 focus:bg-white"
+                    placeholder="mikegolf"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Display Name</label>
+                  <input
+                    type="text"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    className="w-full border border-gray-200 rounded px-4 py-3 text-sm bg-gray-50 focus:bg-white"
+                    placeholder="Mike B"
+                  />
+                </div>
+              </>
+            )}
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-200 rounded px-4 py-3 text-sm bg-gray-50 focus:bg-white"
+                placeholder="mike@example.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border border-gray-200 rounded px-4 py-3 text-sm bg-gray-50 focus:bg-white"
+                placeholder="••••••••"
+                minLength={6}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#006747] text-white py-3 rounded font-semibold text-sm uppercase tracking-wider hover:bg-[#004D35] transition-colors disabled:opacity-50 shadow-md"
+            >
+              {loading ? 'Please wait...' : isRegister ? 'Create Account' : 'Sign In'}
+            </button>
+          </form>
+
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-200"></div>
+            </div>
+            <div className="relative flex justify-center text-xs">
+              <span className="bg-white px-4 text-gray-400 uppercase tracking-wider">or</span>
+            </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              placeholder="••••••"
-              minLength={6}
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition-colors font-medium disabled:opacity-50"
-          >
-            {loading ? 'Please wait...' : isRegister ? 'Create Account' : 'Sign In'}
-          </button>
-        </form>
-
-        <p className="text-center text-sm text-gray-500 mt-4">
-          {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
-          <button
-            onClick={() => { setIsRegister(!isRegister); setError(''); }}
-            className="text-green-700 font-medium hover:underline"
-          >
-            {isRegister ? 'Sign in' : 'Register'}
-          </button>
-        </p>
+          <p className="text-center text-sm text-gray-500">
+            {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
+            <button
+              onClick={() => { setIsRegister(!isRegister); setError(''); }}
+              className="text-[#006747] font-semibold hover:text-[#004D35]"
+            >
+              {isRegister ? 'Sign In' : 'Register'}
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );

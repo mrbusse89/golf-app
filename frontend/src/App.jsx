@@ -12,7 +12,7 @@ import Friends from './pages/Friends';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F5F0E8]">
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 py-6">
         <Routes>

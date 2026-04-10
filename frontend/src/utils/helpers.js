@@ -23,9 +23,9 @@ export function formatDate(dateStr) {
 export function scoreColor(score, par) {
   if (!score || !par) return 'text-gray-600';
   const diff = score - par;
-  if (diff <= -2) return 'text-green-700';
-  if (diff <= 0) return 'text-green-600';
-  if (diff <= 3) return 'text-yellow-600';
+  if (diff <= -2) return 'text-[#006747]';
+  if (diff <= 0) return 'text-[#00854A]';
+  if (diff <= 3) return 'text-[#C8A951]';
   if (diff <= 6) return 'text-orange-600';
   return 'text-red-600';
 }

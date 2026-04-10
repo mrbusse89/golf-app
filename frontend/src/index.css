@@ -3,6 +3,42 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-50 text-gray-900;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #F5F0E8;
+  color: #1a1a1a;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Masters-style gold accent line */
+.gold-accent {
+  border-bottom: 2px solid #C8A951;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8A951;
+  border-radius: 4px;
+}
+
+/* Input focus styles */
+input:focus, select:focus {
+  outline: none;
+  border-color: #006747 !important;
+  box-shadow: 0 0 0 2px rgba(0, 103, 71, 0.2);
 }

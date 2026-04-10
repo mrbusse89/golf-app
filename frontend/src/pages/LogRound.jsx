@@ -33,7 +33,6 @@ export default function LogRound() {
     }))
   );
 
-  // Search courses as user types
   useEffect(() => {
     const timer = setTimeout(() => {
       getCourses({ search, limit: 20 }).then(({ courses }) => setCourses(courses));
@@ -102,7 +101,7 @@ export default function LogRound() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Log a Round</h1>
+      <h1 className="text-2xl font-bold text-[#004D35] mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>Log a Round</h1>
 
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded mb-4 text-sm">{error}</div>
@@ -110,40 +109,40 @@ export default function LogRound() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Course Selection */}
-        <div className="bg-white rounded-lg shadow p-4 space-y-3">
-          <label className="block text-sm font-medium text-gray-700">Course</label>
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-4 space-y-3">
+          <label className="block text-sm font-medium text-[#004D35] uppercase tracking-wider">Course</label>
           <input
             type="text"
             placeholder="Search courses..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951] focus:border-transparent"
           />
           {courses.length > 0 && !form.courseId && (
-            <div className="max-h-48 overflow-y-auto border rounded-md divide-y">
+            <div className="max-h-48 overflow-y-auto border border-[#E8E0D0] rounded-md divide-y divide-[#E8E0D0]">
               {courses.map((c) => (
                 <button
                   key={c.id}
                   type="button"
                   onClick={() => { updateField('courseId', c.id); setSearch(c.name); }}
-                  className="w-full text-left px-3 py-2 hover:bg-green-50 transition-colors"
+                  className="w-full text-left px-3 py-2 hover:bg-[#FFF8E7] transition-colors"
                 >
-                  <div className="font-medium text-sm">{c.name}</div>
-                  <div className="text-xs text-gray-500">{c.city}, {c.state} · Par {c.par} · {c.yardage} yds</div>
+                  <div className="font-medium text-sm text-[#333]">{c.name}</div>
+                  <div className="text-xs text-[#888]">{c.city}, {c.state} · Par {c.par} · {c.yardage} yds</div>
                 </button>
               ))}
             </div>
           )}
           {selectedCourse && (
-            <div className="flex items-center justify-between bg-green-50 px-3 py-2 rounded-md">
+            <div className="flex items-center justify-between bg-[#006747] bg-opacity-10 px-3 py-2 rounded-md border border-[#006747] border-opacity-20">
               <div>
-                <div className="font-medium text-green-800">{selectedCourse.name}</div>
-                <div className="text-xs text-green-600">Par {selectedCourse.par} · {selectedCourse.yardage} yds</div>
+                <div className="font-medium text-[#004D35]">{selectedCourse.name}</div>
+                <div className="text-xs text-[#006747]">Par {selectedCourse.par} · {selectedCourse.yardage} yds</div>
               </div>
               <button
                 type="button"
                 onClick={() => { updateField('courseId', ''); setSearch(''); }}
-                className="text-green-700 hover:text-green-900 text-sm"
+                className="text-[#006747] hover:text-[#004D35] text-sm font-medium"
               >
                 Change
               </button>
@@ -152,25 +151,25 @@ export default function LogRound() {
         </div>
 
         {/* Score & Details */}
-        <div className="bg-white rounded-lg shadow p-4 space-y-4">
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-4 space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Date</label>
               <input
                 type="date"
                 value={form.datePlayed}
                 onChange={(e) => updateField('datePlayed', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Total Score *</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Total Score *</label>
               <input
                 type="number"
                 value={form.totalScore}
                 onChange={(e) => updateField('totalScore', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 placeholder="85"
                 min="40"
                 max="200"
@@ -181,36 +180,36 @@ export default function LogRound() {
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Putts</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Putts</label>
               <input
                 type="number"
                 value={form.totalPutts}
                 onChange={(e) => updateField('totalPutts', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 placeholder="32"
                 min="0"
                 max="100"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Fairways</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Fairways</label>
               <input
                 type="number"
                 value={form.fairwaysHit}
                 onChange={(e) => updateField('fairwaysHit', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 placeholder="8"
                 min="0"
                 max="18"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">GIR</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">GIR</label>
               <input
                 type="number"
                 value={form.greensInRegulation}
                 onChange={(e) => updateField('greensInRegulation', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 placeholder="7"
                 min="0"
                 max="18"
@@ -220,11 +219,11 @@ export default function LogRound() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Tees Played</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Tees Played</label>
               <select
                 value={form.teesPlayed}
                 onChange={(e) => updateField('teesPlayed', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
               >
                 <option value="">Select...</option>
                 <option value="Black">Black</option>
@@ -235,23 +234,23 @@ export default function LogRound() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Weather</label>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Weather</label>
               <input
                 type="text"
                 value={form.weather}
                 onChange={(e) => updateField('weather', e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
                 placeholder="Sunny, 75°F"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+            <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Notes</label>
             <textarea
               value={form.notes}
               onChange={(e) => updateField('notes', e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
               rows={2}
               placeholder="How'd it go?"
             />
@@ -259,18 +258,18 @@ export default function LogRound() {
         </div>
 
         {/* Hole-by-hole toggle */}
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow-md border border-[#E8E0D0] p-4">
           <button
             type="button"
             onClick={() => setShowHoles(!showHoles)}
-            className="text-sm text-green-700 font-medium hover:underline"
+            className="text-sm text-[#006747] font-medium hover:text-[#004D35] hover:underline uppercase tracking-wider"
           >
             {showHoles ? '▼ Hide hole-by-hole scores' : '▶ Add hole-by-hole scores (optional)'}
           </button>
 
           {showHoles && (
             <div className="mt-4 space-y-2">
-              <div className="grid grid-cols-12 gap-1 text-xs text-gray-500 font-medium px-1">
+              <div className="grid grid-cols-12 gap-1 text-xs text-[#888] font-medium px-1 uppercase tracking-wider">
                 <div className="col-span-1">#</div>
                 <div className="col-span-3">Strokes</div>
                 <div className="col-span-3">Putts</div>
@@ -279,13 +278,13 @@ export default function LogRound() {
               </div>
               {holeScores.map((h, i) => (
                 <div key={h.holeNumber} className="grid grid-cols-12 gap-1 items-center">
-                  <div className="col-span-1 text-sm font-medium text-gray-600">{h.holeNumber}</div>
+                  <div className="col-span-1 text-sm font-medium text-[#004D35]">{h.holeNumber}</div>
                   <div className="col-span-3">
                     <input
                       type="number"
                       value={h.strokes}
                       onChange={(e) => updateHole(i, 'strokes', e.target.value)}
-                      className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+                      className="w-full border border-[#D4C9B0] rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#C8A951]"
                       min="1" max="15"
                     />
                   </div>
@@ -294,7 +293,7 @@ export default function LogRound() {
                       type="number"
                       value={h.putts}
                       onChange={(e) => updateHole(i, 'putts', e.target.value)}
-                      className="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-green-500"
+                      className="w-full border border-[#D4C9B0] rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#C8A951]"
                       min="0" max="10"
                     />
                   </div>
@@ -303,7 +302,7 @@ export default function LogRound() {
                       type="checkbox"
                       checked={h.fairwayHit === 1}
                       onChange={(e) => updateHole(i, 'fairwayHit', e.target.checked ? 1 : 0)}
-                      className="h-4 w-4 text-green-600 rounded"
+                      className="h-4 w-4 text-[#006747] rounded border-[#D4C9B0]"
                     />
                   </div>
                   <div className="col-span-2 flex justify-center">
@@ -311,7 +310,7 @@ export default function LogRound() {
                       type="checkbox"
                       checked={h.gir === 1}
                       onChange={(e) => updateHole(i, 'gir', e.target.checked ? 1 : 0)}
-                      className="h-4 w-4 text-green-600 rounded"
+                      className="h-4 w-4 text-[#006747] rounded border-[#D4C9B0]"
                     />
                   </div>
                 </div>
@@ -323,7 +322,7 @@ export default function LogRound() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-green-700 text-white py-3 rounded-md hover:bg-green-800 transition-colors font-medium disabled:opacity-50"
+          className="w-full bg-[#006747] text-white py-3 rounded-md hover:bg-[#004D35] transition-colors font-medium disabled:opacity-50 uppercase tracking-wider"
         >
           {loading ? 'Saving...' : 'Save Round'}
         </button>

@@ -4,18 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        green: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
+        masters: {
+          green: '#006747',
+          dark: '#004D35',
+          light: '#00854A',
+          gold: '#C8A951',
+          cream: '#FFF8E7',
+          sand: '#F5F0E8',
         }
+      },
+      fontFamily: {
+        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'serif'],
       }
     },
   },
