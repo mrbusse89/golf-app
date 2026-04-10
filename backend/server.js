@@ -50,30 +50,48 @@ async function start() {
   try {
     await getDb();
 
-    // Check if courses exist, seed if empty
+    // Seed database with courses if needed
+    const pool = new Pool(
+      process.env.DATABASE_URL
+        ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
+        : {
+            user: process.env.DB_USER || 'postgres',
+            password: process.env.DB_PASSWORD || 'postgres',
+            host: process.env.DB_HOST || 'localhost',
+            port: process.env.DB_PORT || 5432,
+            database: process.env.DB_NAME || 'golf_app',
+          }
+    );
+
     const courseCount = await get('SELECT COUNT(*) as count FROM courses');
-    if (Number(courseCount.count) === 0) {
+    const count = Number(courseCount.count);
+
+    if (count === 0) {
+      // Load initial seed data
       const seedPath = path.resolve(__dirname, '../database/seed.sql');
       if (fs.existsSync(seedPath)) {
         const seed = fs.readFileSync(seedPath, 'utf-8');
-        const pool = new Pool(
-          process.env.DATABASE_URL
-            ? { connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } }
-            : {
-                user: process.env.DB_USER || 'postgres',
-                password: process.env.DB_PASSWORD || 'postgres',
-                host: process.env.DB_HOST || 'localhost',
-                port: process.env.DB_PORT || 5432,
-                database: process.env.DB_NAME || 'golf_app',
-              }
-        );
         await pool.query(seed);
-        await pool.end();
         console.log('[DB] Seed data loaded');
       }
-    } else {
-      console.log(`[DB] ${courseCount.count} courses already loaded`);
     }
+
+    // Always try to load additional courses (uses ON CONFLICT DO NOTHING)
+    const extraSeeds = [
+      path.resolve(__dirname, '../database/michigan_courses.sql'),
+    ];
+    for (const seedFile of extraSeeds) {
+      if (fs.existsSync(seedFile)) {
+        const sql = fs.readFileSync(seedFile, 'utf-8');
+        await pool.query(sql);
+        console.log(`[DB] Loaded ${path.basename(seedFile)}`);
+      }
+    }
+
+    await pool.end();
+
+    const finalCount = await get('SELECT COUNT(*) as count FROM courses');
+    console.log(`[DB] ${finalCount.count} courses loaded`);
 
     app.listen(PORT, () => {
       console.log(`[SERVER] Golf App API running on http://localhost:${PORT}`);

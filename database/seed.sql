@@ -102,4 +102,4 @@ INSERT INTO courses (name, city, state, par, holes, slope_rating, course_rating,
 ('Austin Country Club', 'Austin', 'TX', 72, 18, 137, 73.5, 7108),
 ('Colonial Country Club', 'Fort Worth', 'TX', 70, 18, 131, 72.5, 7209),
 ('The Concession', 'Bradenton', 'FL', 72, 18, 148, 76.4, 7474)
-ON CONFLICT DO NOTHING;
+ON CONFLICT (name) DO NOTHING;

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 -- Courses
 CREATE TABLE IF NOT EXISTS courses (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name TEXT UNIQUE NOT NULL,
   city TEXT,
   state TEXT,
   country TEXT DEFAULT 'US',
