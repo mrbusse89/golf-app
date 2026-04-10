@@ -43,6 +43,9 @@ export default function Navbar() {
               <Link to="/courses" className={linkClass('/courses')}>Courses</Link>
               <Link to="/rounds" className={linkClass('/rounds')}>Rounds</Link>
               <Link to="/friends" className={linkClass('/friends')}>Friends</Link>
+              <Link to="/handicap" className={linkClass('/handicap')}>Handicap</Link>
+              <Link to="/leaderboard" className={linkClass('/leaderboard')}>Leaderboard</Link>
+              <Link to="/driving-distance" className={linkClass('/driving-distance')}>Driving</Link>
             </div>
           )}
 
@@ -86,6 +89,9 @@ export default function Navbar() {
               <Link to="/courses" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Courses</Link>
               <Link to="/rounds" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Rounds</Link>
               <Link to="/friends" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Friends</Link>
+              <Link to="/handicap" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Handicap</Link>
+              <Link to="/leaderboard" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Leaderboard</Link>
+              <Link to="/driving-distance" onClick={() => setMenuOpen(false)} className="text-green-100 hover:text-white px-3 py-2 text-sm uppercase tracking-wide">Driving</Link>
             </div>
           </div>
         )}

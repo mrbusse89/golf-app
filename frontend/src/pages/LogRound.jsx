@@ -18,6 +18,7 @@ export default function LogRound() {
     totalPutts: '',
     fairwaysHit: '',
     greensInRegulation: '',
+    avgDrivingDistance: '',
     notes: '',
     weather: '',
     teesPlayed: ''
@@ -70,6 +71,7 @@ export default function LogRound() {
         totalPutts: form.totalPutts ? Number(form.totalPutts) : undefined,
         fairwaysHit: form.fairwaysHit ? Number(form.fairwaysHit) : undefined,
         greensInRegulation: form.greensInRegulation ? Number(form.greensInRegulation) : undefined,
+        avgDrivingDistance: form.avgDrivingDistance ? Number(form.avgDrivingDistance) : undefined,
         notes: form.notes || undefined,
         weather: form.weather || undefined,
         teesPlayed: form.teesPlayed || undefined
@@ -213,6 +215,18 @@ export default function LogRound() {
                 placeholder="7"
                 min="0"
                 max="18"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#004D35] mb-1 uppercase tracking-wider text-xs">Avg Drive (yds)</label>
+              <input
+                type="number"
+                value={form.avgDrivingDistance}
+                onChange={(e) => updateField('avgDrivingDistance', e.target.value)}
+                className="w-full border border-[#D4C9B0] rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#C8A951]"
+                placeholder="250"
+                min="0"
+                max="450"
               />
             </div>
           </div>

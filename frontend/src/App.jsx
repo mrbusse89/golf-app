@@ -9,6 +9,9 @@ import CourseDetail from './pages/CourseDetail';
 import RoundsList from './pages/RoundsList';
 import RoundDetail from './pages/RoundDetail';
 import Friends from './pages/Friends';
+import Handicap from './pages/Handicap';
+import FriendsLeaderboard from './pages/FriendsLeaderboard';
+import DrivingDistance from './pages/DrivingDistance';
 
 export default function App() {
   return (
@@ -24,6 +27,9 @@ export default function App() {
           <Route path="/courses" element={<ProtectedRoute><Courses /></ProtectedRoute>} />
           <Route path="/courses/:id" element={<ProtectedRoute><CourseDetail /></ProtectedRoute>} />
           <Route path="/friends" element={<ProtectedRoute><Friends /></ProtectedRoute>} />
+          <Route path="/handicap" element={<ProtectedRoute><Handicap /></ProtectedRoute>} />
+          <Route path="/leaderboard" element={<ProtectedRoute><FriendsLeaderboard /></ProtectedRoute>} />
+          <Route path="/driving-distance" element={<ProtectedRoute><DrivingDistance /></ProtectedRoute>} />
         </Routes>
       </main>
     </div>

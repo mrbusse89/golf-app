@@ -12,7 +12,7 @@ router.use(authenticate);
  */
 router.post('/', async (req, res) => {
   try {
-    const { courseId, datePlayed, totalScore, totalPutts, fairwaysHit, greensInRegulation, notes, weather, teesPlayed, holeScores } = req.body;
+    const { courseId, datePlayed, totalScore, totalPutts, fairwaysHit, greensInRegulation, avgDrivingDistance, notes, weather, teesPlayed, holeScores } = req.body;
 
     if (!courseId || !datePlayed || !totalScore) {
       return res.status(400).json({ error: 'courseId, datePlayed, and totalScore are required' });
@@ -25,9 +25,9 @@ router.post('/', async (req, res) => {
     }
 
     const { lastId } = await run(
-      `INSERT INTO rounds (user_id, course_id, date_played, total_score, total_putts, fairways_hit, greens_in_regulation, notes, weather, tees_played)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
-      [req.user.id, courseId, datePlayed, totalScore, totalPutts || null, fairwaysHit || null, greensInRegulation || null, notes || null, weather || null, teesPlayed || null]
+      `INSERT INTO rounds (user_id, course_id, date_played, total_score, total_putts, fairways_hit, greens_in_regulation, avg_driving_distance, notes, weather, tees_played)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`,
+      [req.user.id, courseId, datePlayed, totalScore, totalPutts || null, fairwaysHit || null, greensInRegulation || null, avgDrivingDistance || null, notes || null, weather || null, teesPlayed || null]
     );
 
     // Insert hole-by-hole scores if provided

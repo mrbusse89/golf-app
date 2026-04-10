@@ -31,6 +31,9 @@ app.use('/api/courses', require('./routes/courses'));
 app.use('/api/dashboard', require('./routes/dashboard'));
 app.use('/api/reviews', require('./routes/reviews'));
 app.use('/api/friends', require('./routes/friends'));
+app.use('/api/handicap', require('./routes/handicap'));
+app.use('/api/leaderboard', require('./routes/leaderboard'));
+app.use('/api/driving-distance', require('./routes/driving-distance'));
 
 // Health check
 app.get('/api/health', (req, res) => {
